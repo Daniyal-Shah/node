@@ -10,8 +10,11 @@ const customersSchema = new mongoose.Schema({
     required: true,
     unique: false,
     validate: {
-      validator: function (v) {
-        return v && v.length >= 8;
+      validator: function (v, callback) {
+        setTimeout(() => {
+          const result = v && v.length >= 8;
+          callback(result);
+        }, 2000);
       },
       message: "Password must have at least 8 letter",
     },
