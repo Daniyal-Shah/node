@@ -29,6 +29,7 @@ router.post("/customers", async (req, res) => {
     let customer = { customerId: getCustomers.length + 1, ...req.body };
 
     const addingCustomer = new Customers(customer);
+
     const item = await addingCustomer.save();
 
     res.status(201).send(item);
