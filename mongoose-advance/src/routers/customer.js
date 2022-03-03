@@ -33,8 +33,12 @@ router.post("/customers", async (req, res) => {
     const item = await addingCustomer.save();
 
     res.status(201).send(item);
-  } catch (error) {
-    res.status(400).send(error);
+  } catch (ex) {
+    let str = "";
+    for (field in ex.errors) {
+      str = str + (ex.errors[field].message + "/n");
+    }
+    res.status(400).send(str);
   }
 });
 
