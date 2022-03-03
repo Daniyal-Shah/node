@@ -14,20 +14,19 @@ mongoose
     console.log(e);
   });
 
-const Author = mongoose.model(
-  "Author",
-  new mongoose.Schema({
-    name: String,
-    bio: String,
-    website: String,
-  })
-);
+const authorSchema = new mongoose.Schema({
+  name: String,
+  bio: String,
+  website: String,
+});
+
+const Author = mongoose.model("Author", authorSchema);
 
 const Course = mongoose.model(
   "Course",
   new mongoose.Schema({
     name: String,
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
+    author: authorSchema,
   })
 );
 
@@ -59,8 +58,25 @@ async function listCourses() {
   console.log(courses);
 }
 
+//  $set is used to edit/set sub document
+//  $unset is used to remove sub document
+
+async function updateAuthor(courseId) {
+  const course = await Course.updateOne(
+    { _id: courseId },
+    { $set: { "author.name": "John Smith" } }
+  );
+
+  console.log(course);
+}
+
 // createAuthor("Daniyal", "My bio", "Mywebsite.com");
 
-// createCourse("Course1", "622105e9bac4bbc7bf5dce7a");
+// createCourse(
+//   "Course1",
+//   new Author({ name: "Daniyal", bio: "My bio", website: "Mywebsite.com" })
+// );
 
 // listCourses();
+
+updateAuthor("62210b51b24e6c4392289894");
