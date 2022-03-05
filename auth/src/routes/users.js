@@ -1,7 +1,6 @@
 const { userSchema, User, validate } = require("../models/user");
 const _ = require("lodash");
 const express = require("express");
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 
