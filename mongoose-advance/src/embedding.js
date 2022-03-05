@@ -102,4 +102,4 @@ async function removeAuthor(courseId, authorId) {
 
 // addAuthor("62210f3d956183b939518b83", new Author({ name: "New added" }));
 
-removeAuthor("62210f3d956183b939518b83", "62210f3d956183b939518b82");
+// removeAuthor("62210f3d956183b939518b83", "62210f3d956183b939518b82");
