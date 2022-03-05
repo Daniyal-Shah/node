@@ -5,9 +5,11 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const auth_middleware = require("../middlewares/auth");
 
-router.get("/", async (req, res) => {
-  res.send([]);
+//to test middlware for authentication with x-auth-token
+router.get("/", auth_middleware, async (req, res) => {
+  res.send("Test passed!  Correct token");
 });
 
 router.post("/register", async (req, res) => {
