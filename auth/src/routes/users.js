@@ -6,6 +6,13 @@ const router = express.Router();
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth_middleware = require("../middlewares/auth");
+const admin_middleware = require("../middlewares/admin");
+
+//to check if the user is admin or not with admin middleware created
+router.get("/admin", [auth_middleware, admin_middleware], async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
+  res.send(user);
+});
 
 //Authorization
 // To get current user with x-auth-token
