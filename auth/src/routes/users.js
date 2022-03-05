@@ -7,9 +7,11 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const auth_middleware = require("../middlewares/auth");
 
-//to test middlware for authentication with x-auth-token
-router.get("/", auth_middleware, async (req, res) => {
-  res.send("Test passed!  Correct token");
+//Authorization
+// To get current user with x-auth-token
+router.get("/me", auth_middleware, async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
+  res.send(user);
 });
 
 router.post("/register", async (req, res) => {
