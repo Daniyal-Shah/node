@@ -5,6 +5,7 @@ const cors = require("cors");
 const port = process.env.PORT || 8000;
 require("../src/db/conn");
 const errorMiddleware = require("../src/middlewares/error");
+require("express-async-errors");
 
 if (!config.get("jwtPrivateKey")) {
   // console.error("FATAL ERROR : jwtPrivateKey is not defined");
