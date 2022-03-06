@@ -6,6 +6,7 @@ const port = process.env.PORT || 8000;
 require("../src/db/conn");
 const errorMiddleware = require("../src/middlewares/error");
 require("express-async-errors");
+const winston = require("winston");
 
 if (!config.get("jwtPrivateKey")) {
   // console.error("FATAL ERROR : jwtPrivateKey is not defined");

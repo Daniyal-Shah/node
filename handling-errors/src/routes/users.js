@@ -9,8 +9,13 @@ const auth_middleware = require("../middlewares/auth");
 const admin_middleware = require("../middlewares/admin");
 const async_middleware = require("../middlewares/async");
 
+router.get("/test", async (req, res) => {
+  throw new Error("could not get admin");
+});
+
 //to check if the user is admin or not with admin middleware created
 router.get("/admin", [auth_middleware, admin_middleware], async (req, res) => {
+  throw new Error("could not get admin");
   const user = await User.findById(req.user._id).select("-password");
   res.send(user);
 });
