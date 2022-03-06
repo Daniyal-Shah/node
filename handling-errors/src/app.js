@@ -12,6 +12,9 @@ if (!config.get("jwtPrivateKey")) {
   // console.error("FATAL ERROR : jwtPrivateKey is not defined");
   // process.exit(1);
 }
+process.on("uncaughtException", (err) => {
+  // winston.error(err.message, err);
+});
 
 const userRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
